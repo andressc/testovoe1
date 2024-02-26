@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Apple MacBook Air 13 (2020) Ноутбук 13.3",
+      "description": "Macbook Air, Адаптер питания USB-C мощностью 30 Вт, Кабель USB‑C для зарядки (2 м)",
+      "cost": 50700,
+      "image": "https://ir.ozone.ru/s3/multimedia-o/wc1000/6626223156.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Apple MacBook Pro Ноутбук 16",
+      "description": "MacBook Кабель USB-C (2м) Адаптер питания USB-C",
+      "cost": 90100,
+      "image": "https://ir.ozone.ru/s3/multimedia-s/wc1000/6603834232.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Apple MacBook Air 13.6 2022 M2-1 Ноутбук 13.6",
+      "description": "MacBook Air, кабель для зарядки, зарядная головка, адаптер для зарядного устройства, русская пленка для клавиатуры",
+      "cost": 40000,
+      "image": "https://ir.ozone.ru/s3/multimedia-6/wc1000/6894974886.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Apple MacBook Pro 14 M3 8/512 Silver Ноутбук 14",
+      "description": "MacBook Pro Адаптер питания USB‑C мощностью 70 Вт Кабель USB‑C/MagSafe 3 (2 м) Документация",
+      "cost": 130000,
+      "image": "https://ir.ozone.ru/s3/multimedia-1-l/wc1000/6913091289.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Apple MacBook Air 15,3-дюймовый ноутбук",
+      "description": "Apple MacBook Air 15,3-дюймовый ноутбук, 10-ядерный графический процессор, китайская версия.",
+      "cost": 75000,
+      "image": "https://ir.ozone.ru/s3/multimedia-i/wc1000/6791564646.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Apple Apple MacBook Pro 14",
+      "description": "Apple Apple MacBook Pro 14 M2 Pro chip SPG/10C CPU/16C GPU/16GB/512GB A2779",
+      "cost": 80000,
+      "image": "https://ir.ozone.ru/s3/multimedia-l/wc1000/6584531241.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Apple Смартфон IPhone 7 128",
+      "description": "Поддерживает несколько частотных диапазонов для стандартов 3G и 4G (LTE), обеспечивая кристально чистую связь и быстрый доступ в Интернет.",
+      "cost": 30000,
+      "image": "https://ir.ozone.ru/s3/multimedia-4/wc1000/6560548984.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Apple Смартфон iPhone 14 Pro Max Dual SIM 6/512 ГБ",
+      "description": "iPhone;Кабель USB‑C/Lightning;Документация",
+      "cost": 180000,
+      "image": "https://ir.ozone.ru/s3/multimedia-j/wc1000/6404606899.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Apple Смартфон iPhone 15 Pro NFC",
+      "description": "Apple Смартфон iPhone 15 Pro NFC Поддержка русского языка+Двойной Nano Sim 6.1",
+      "cost": 250000,
+      "image": "https://ir.ozone.ru/s3/multimedia-8/wc1000/6768648836.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Наушники Apple AirPods 3-го поколения",
+      "description": "Наушники Apple AirPods 3-го поколения / 2022 / Беспроводные / Для iphone / Белый",
+      "cost": 17000,
+      "image": "https://ir.ozone.ru/s3/multimedia-c/wc1000/6342093504.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Умная колонка Apple HomePod mini",
+      "description": "1*HomePod mini;1*блок питания(CN версия); 1*документация;1*переходник EU",
+      "cost": 14000,
+      "image": "https://ir.ozone.ru/s3/multimedia-j/wc1000/6853936303.jpg"
+    }
+  ]
+}
