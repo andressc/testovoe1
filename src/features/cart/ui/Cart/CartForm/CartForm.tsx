@@ -8,19 +8,23 @@ import { useFormik } from 'formik'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { cartActions } from 'features/cart/model/cartSlice'
 import Box from '@mui/material/Box'
+import * as Yup from 'yup'
+import { minMaxRequiredStringField, PhoneNumberField } from 'common/utils/validations'
+
+const CartFormSchema = Yup.object().shape({
+    firstName: minMaxRequiredStringField(2, 20),
+    lastName: minMaxRequiredStringField(2, 20),
+    address: minMaxRequiredStringField(10, 50),
+    phone: PhoneNumberField(),
+})
 
 export const CartForm = () => {
     const dispatch = useAppDispatch()
     const formik = useFormik({
-        validate: (values) => {
-            if (!values.firstname) return { firstname: 'Введите Ваше имя' }
-            if (!values.lastname) return { lastname: 'Введите Вашу Фамилию' }
-            if (!values.address) return { address: 'Введите Ваш адрес' }
-            if (!values.phone) return { phone: 'Введите Ваш телефон' }
-        },
+        validationSchema: CartFormSchema,
         initialValues: {
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             address: '',
             phone: '',
         },
@@ -42,31 +46,31 @@ export const CartForm = () => {
             <FormControl>
                 <FormGroup className={`${s.item} ${s.small}`}>
                     <TextField
-                        id="firstname"
-                        label="Введите Ваше имя"
-                        error={!!formik.errors.firstname}
-                        helperText={formik.errors.firstname}
-                        {...formik.getFieldProps('firstname')}
+                        id="firstName"
+                        label="Имя"
+                        error={!!formik.errors.firstName && formik.touched.firstName}
+                        helperText={formik.touched.firstName && formik.errors.firstName}
+                        {...formik.getFieldProps('firstName')}
                     />
                     <TextField
-                        id="lastname"
-                        label="Введите Вашу Фамилию"
-                        error={!!formik.errors.lastname}
-                        helperText={formik.errors.lastname}
-                        {...formik.getFieldProps('lastname')}
+                        id="lastName"
+                        label="Фамилия"
+                        error={!!formik.errors.lastName && formik.touched.lastName}
+                        helperText={formik.touched.lastName && formik.errors.lastName}
+                        {...formik.getFieldProps('lastName')}
                     />
                     <TextField
                         id="address"
-                        label="Введите Ваш адрес"
-                        error={!!formik.errors.address}
-                        helperText={formik.errors.address}
+                        label="Адрес"
+                        error={!!formik.errors.address && formik.touched.address}
+                        helperText={formik.touched.address && formik.errors.address}
                         {...formik.getFieldProps('address')}
                     />
                     <TextField
                         id="phone"
-                        label="Введите Ваш телефон"
-                        error={!!formik.errors.phone}
-                        helperText={formik.errors.phone}
+                        label="Телефон"
+                        error={!!formik.errors.phone && formik.touched.phone}
+                        helperText={formik.touched.phone && formik.errors.phone}
                         {...formik.getFieldProps('phone')}
                     />
                     <Button variant="contained" size="medium" color="primary" type={'submit'}>

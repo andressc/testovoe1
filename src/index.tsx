@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './app/App'
+import App from 'app/ui/App'
 
-import './firebase/firebase'
+import './app/firebase/firebase'
 import { Provider } from 'react-redux'
-import { store } from 'app/store'
+import { store } from 'app/model/store'
 import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

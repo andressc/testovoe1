@@ -35,7 +35,7 @@ const slice = createAppSlice({
                 }
             }),
             getProductById: createAThunk<{ product: ProductEntity }, { id: string }>(
-                async (param, { dispatch, rejectWithValue }) => {
+                async (param, { rejectWithValue }) => {
                     try {
                         const result = await productsApi.getProductById(param.id)
                         return { product: result }

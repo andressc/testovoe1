@@ -1,4 +1,4 @@
-import { appReducer, appActions, appSelectors } from './appSlice' // Путь к вашему редюсеру
+import { appReducer, appActions, appSelectors } from 'app/model/appSlice' // Путь к вашему редюсеру
 
 // Тесты для reducers
 describe('appReducer', () => {

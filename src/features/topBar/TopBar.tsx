@@ -1,12 +1,12 @@
 import React from 'react'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AppBar from '@mui/material/AppBar'
 import { useSelector } from 'react-redux'
 import { cartSelectors } from 'features/cart/model/cartSlice'
 import { Link } from 'react-router-dom'
+import { LinkTypography } from 'common/components/LinkTypography/LinkTypography'
 
 export const TopBar = () => {
     const cartAmount = useSelector(cartSelectors.selectCartAmount)
@@ -14,9 +14,7 @@ export const TopBar = () => {
     return (
         <AppBar position="fixed">
             <Toolbar sx={{ position: 'relative' }}>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                     Apple Shop
-                </Typography>
+                <LinkTypography to="/"> Apple Shop</LinkTypography>
                 <Button
                     startIcon={<ShoppingCartIcon />}
                     endIcon={cartAmount !== 0 ? `${cartAmount} ₽` : ''}

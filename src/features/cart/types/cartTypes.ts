@@ -3,8 +3,8 @@ import { ProductEntity } from 'features/products/types/productTypes'
 export type CartItem = ProductEntity & { quantity: number }
 
 export type CartFormData = {
-    firstname: string
-    lastname: string
+    firstName: string
+    lastName: string
     address: string
     phone: string
 }

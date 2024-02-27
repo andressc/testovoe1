@@ -1,4 +1,4 @@
-import { database } from '../../../firebase/firebase'
+import { database } from '../../../app/firebase/firebase'
 import { ref, get } from 'firebase/database'
 import { ProductEntity } from 'features/products/types/productTypes'
 const db = 'products'

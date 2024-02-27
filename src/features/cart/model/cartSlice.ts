@@ -1,5 +1,5 @@
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppRootState } from 'app/store'
+import { AppRootState } from 'app/model/store'
 import { ProductEntity } from 'features/products/types/productTypes'
 import { CartFormData, CartItem } from 'features/cart/types/cartTypes'
 

@@ -108,8 +108,8 @@ describe('purchase thunk', () => {
         dispatch = jest.fn()
         getState = jest.fn().mockReturnValue({})
         formData = {
-            firstname: 'firstname',
-            lastname: 'lastname',
+            firstName: 'firstName',
+            lastName: 'lastName',
             address: 'string',
             phone: 'string',
         }

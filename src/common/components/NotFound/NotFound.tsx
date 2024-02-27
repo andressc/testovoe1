@@ -1,5 +1,5 @@
 import React from 'react'
-import notFoundImage from 'assets/images/notFound.webp'
+import notFoundImage from 'common/assets/images/notFound.webp'
 import { EmptyPage } from 'common/components/EmptyPage/EmptyPage'
 
 export const NotFound = () => {

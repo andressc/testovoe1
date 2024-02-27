@@ -10,14 +10,6 @@ const firebaseConfig = {
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-    /*apiKey: 'AIzaSyAbE91fuBZaiCfvv9X461VEpyfY4NWikJ0',
-    authDomain: 'market-1a512.firebaseapp.com',
-    databaseURL: 'https://market-1a512-default-rtdb.firebaseio.com',
-    projectId: 'market-1a512',
-    storageBucket: 'market-1a512.appspot.com',
-    messagingSenderId: '1019800640891',
-    appId: '1:1019800640891:web:ff6978c473ec0e13e7f1de',
-    measurementId: 'G-ZLQPY6MXHH',*/
 }
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
