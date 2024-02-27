@@ -1,13 +1,13 @@
 import React from 'react'
 import FormGroup from '@mui/material/FormGroup'
 import TextField from '@mui/material/TextField'
-import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
-import s from '../Cart/Card.module.css'
+import s from 'features/cart/ui/Cart/Card.module.css'
 import { useFormik } from 'formik'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { cartActions } from 'features/cart/model/cartSlice'
+import Box from '@mui/material/Box'
 
 export const CartForm = () => {
     const dispatch = useAppDispatch()
@@ -30,43 +30,41 @@ export const CartForm = () => {
     })
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <Box
+            component="form"
+            sx={{
+                '& .MuiTextField-root': { m: 1, width: '40ch' },
+                '& .MuiButton-root': { m: 1, width: '41ch', marginBottom: 10 },
+            }}
+            autoComplete="off"
+            onSubmit={formik.handleSubmit}
+        >
             <FormControl>
-                <FormLabel>
-                    <p>Введите данные для заказа</p>
-                </FormLabel>
-                <FormGroup
-                    className={`${s.item} ${s.small}`}
-                    style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
-                >
+                <FormGroup className={`${s.item} ${s.small}`}>
                     <TextField
                         id="firstname"
-                        label="firstname"
-                        variant="filled"
+                        label="Введите Ваше имя"
                         error={!!formik.errors.firstname}
                         helperText={formik.errors.firstname}
                         {...formik.getFieldProps('firstname')}
                     />
                     <TextField
                         id="lastname"
-                        label="lastname"
-                        variant="filled"
+                        label="Введите Вашу Фамилию"
                         error={!!formik.errors.lastname}
                         helperText={formik.errors.lastname}
                         {...formik.getFieldProps('lastname')}
                     />
                     <TextField
                         id="address"
-                        label="address"
-                        variant="filled"
+                        label="Введите Ваш адрес"
                         error={!!formik.errors.address}
                         helperText={formik.errors.address}
                         {...formik.getFieldProps('address')}
                     />
                     <TextField
                         id="phone"
-                        label="phone"
-                        variant="filled"
+                        label="Введите Ваш телефон"
                         error={!!formik.errors.phone}
                         helperText={formik.errors.phone}
                         {...formik.getFieldProps('phone')}
@@ -76,6 +74,6 @@ export const CartForm = () => {
                     </Button>
                 </FormGroup>
             </FormControl>
-        </form>
+        </Box>
     )
 }

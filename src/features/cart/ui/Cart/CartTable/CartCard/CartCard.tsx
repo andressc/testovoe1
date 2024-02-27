@@ -2,16 +2,18 @@ import React from 'react'
 import TableCell from '@mui/material/TableCell'
 import Avatar from '@mui/material/Avatar'
 import TableRow from '@mui/material/TableRow'
-import { CartItem } from 'features/cart/model/cartSlice'
 import IconButton from '@mui/material/IconButton'
 import AddCircleIcon from '@mui/icons-material/Add'
 import RemoveCircleIcon from '@mui/icons-material/Remove'
-import { Product } from 'features/products/api/productsApi'
+import { Link } from 'react-router-dom'
+import { FixedTableCell } from 'common/components/FixedTableCell/FixedTableCell'
+import { ProductEntity } from 'features/products/types/productTypes'
+import { CartItem } from 'features/cart/types/cartTypes'
 
 type Props = {
     cartItem: CartItem
-    addCartItemHandler: (product: Product) => void
-    removeCartItemHandler: (product: Product) => void
+    addCartItemHandler: (product: ProductEntity) => void
+    removeCartItemHandler: (product: ProductEntity) => void
 }
 export const CartCard = ({ cartItem, addCartItemHandler, removeCartItemHandler }: Props) => {
     const { image, name, cost, quantity } = cartItem
@@ -19,14 +21,21 @@ export const CartCard = ({ cartItem, addCartItemHandler, removeCartItemHandler }
     return (
         <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
             <TableCell align="right">
-                <Avatar alt="Remy Sharp" src={image} sx={{ width: 100, height: 100 }} variant={'square'} />
+                <Avatar
+                    alt="Remy Sharp"
+                    src={image}
+                    sx={{ width: 100, height: 100 }}
+                    variant={'square'}
+                    component={Link}
+                    to={`/product/${cartItem.id}`}
+                />
             </TableCell>
             <TableCell>
                 {name}
                 <br />
                 {cost} ₽
             </TableCell>
-            <TableCell>
+            <FixedTableCell>
                 <IconButton aria-label="delete" size="small" onClick={() => removeCartItemHandler(cartItem)}>
                     <RemoveCircleIcon fontSize="small" />
                 </IconButton>
@@ -34,7 +43,7 @@ export const CartCard = ({ cartItem, addCartItemHandler, removeCartItemHandler }
                 <IconButton aria-label="delete" size="medium" onClick={() => addCartItemHandler(cartItem)}>
                     <AddCircleIcon fontSize="small" />
                 </IconButton>
-            </TableCell>
+            </FixedTableCell>
         </TableRow>
     )
 }

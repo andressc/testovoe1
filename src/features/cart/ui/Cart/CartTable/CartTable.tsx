@@ -1,11 +1,12 @@
 import React from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
-import { cartActions, CartItem } from 'features/cart/model/cartSlice'
-import { CartCard } from 'features/cart/ui/CartCard/CartCard'
-import { Product } from 'features/products/api/productsApi'
+import { cartActions } from 'features/cart/model/cartSlice'
+import { CartCard } from 'features/cart/ui/Cart/CartTable/CartCard/CartCard'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import s from '../Cart/Card.module.css'
+import s from 'features/cart/ui/Cart/Card.module.css'
+import { ProductEntity } from 'features/products/types/productTypes'
+import { CartItem } from 'features/cart/types/cartTypes'
 
 type Props = {
     cartItems: CartItem[]
@@ -13,11 +14,11 @@ type Props = {
 export const CartTable = ({ cartItems }: Props) => {
     const dispatch = useAppDispatch()
 
-    const addCartItemHandler = (product: Product) => {
+    const addCartItemHandler = (product: ProductEntity) => {
         dispatch(cartActions.addCartItem({ product }))
     }
 
-    const removeCartItemHandler = (product: Product) => {
+    const removeCartItemHandler = (product: ProductEntity) => {
         dispatch(cartActions.removeCartItem({ product }))
     }
 

@@ -1,12 +1,12 @@
-import { Product } from 'features/products/api/productsApi'
 import Skeleton from '@mui/material/Skeleton'
 import CardMedia from '@mui/material/CardMedia'
 import { Button } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { cartActions } from 'features/cart/model/cartSlice'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { ProductEntity } from 'features/products/types/productTypes'
 
-export const useSkeletonProductCard = (product: Product, isLoading: boolean, isImg: boolean = false) => {
+export const useSkeletonProductCard = (product: ProductEntity, isLoading: boolean) => {
     const dispatch = useAppDispatch()
     const addCartItemHandler = () => {
         dispatch(cartActions.addCartItem({ product }))
@@ -27,11 +27,7 @@ export const useSkeletonProductCard = (product: Product, isLoading: boolean, isI
     )
 
     const image = !isLoading ? (
-        !isImg ? (
-            <CardMedia component="img" height="200" image={product.image} alt={product.name} />
-        ) : (
-            <img src={product.image} alt={product.name} style={{ height: 200 }} />
-        )
+        <CardMedia component="img" height="200" image={product.image} alt={product.name} />
     ) : (
         <Skeleton variant="rectangular" width={345} height={200} />
     )

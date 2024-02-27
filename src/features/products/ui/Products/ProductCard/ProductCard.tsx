@@ -3,12 +3,12 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import { CardActionArea, CardActions } from '@mui/material'
-import { Product } from 'features/products/api/productsApi'
 import { useSkeletonProductCard } from 'features/products/ui/lib/useSkeletonProductCard'
 import { Link } from 'react-router-dom'
+import { ProductEntity } from 'features/products/types/productTypes'
 
 type Props = {
-    product: Product
+    product: ProductEntity
     isLoading?: boolean
 }
 export const ProductCard = ({ product, isLoading = false }: Props) => {

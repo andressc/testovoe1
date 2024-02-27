@@ -1,8 +1,6 @@
 import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit'
-import { Product, productsApi } from 'features/products/api/productsApi'
-import { AppStatuses } from 'app/appSlice'
-
-type ProductDomain = Product & { status: AppStatuses }
+import { productsApi } from 'features/products/api/productsApi'
+import { ProductEntity } from 'features/products/types/productTypes'
 
 const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
@@ -11,8 +9,8 @@ const createAppSlice = buildCreateSlice({
 const slice = createAppSlice({
     name: 'products',
     initialState: {
-        products: [] as ProductDomain[],
-        product: null as Product | null,
+        products: [] as ProductEntity[],
+        product: null as ProductEntity | null,
         productsIsLoading: true,
         productIsLoading: true,
         skeletonSize: 8,
@@ -24,21 +22,19 @@ const slice = createAppSlice({
             clearProducts: creators.reducer((state) => {
                 state.products = []
             }),
-            fetchProducts: createAThunk<{ products: Product[] }, undefined>(
-                async (_, { dispatch, rejectWithValue }) => {
-                    try {
-                        const result = await productsApi.getProducts()
-                        return { products: result.data }
+            fetchProducts: createAThunk<{ products: ProductEntity[] }, undefined>(async (_, { rejectWithValue }) => {
+                try {
+                    const result = await productsApi.getProducts()
+                    return { products: result.data }
 
-                        //handleServerAppError(result.data.error, dispatch)
-                        //return rejectWithValue(null)
-                    } catch (e) {
-                        //handleServerNetworkError(dispatch, e)
-                        return rejectWithValue(null)
-                    }
+                    //handleServerAppError(result.data.error, dispatch)
+                    //return rejectWithValue(null)
+                } catch (e) {
+                    //handleServerNetworkError(dispatch, e)
+                    return rejectWithValue(null)
                 }
-            ),
-            getProductById: createAThunk<{ product: Product }, { id: string }>(
+            }),
+            getProductById: createAThunk<{ product: ProductEntity }, { id: string }>(
                 async (param, { dispatch, rejectWithValue }) => {
                     try {
                         const result = await productsApi.getProductById(param.id)
@@ -58,7 +54,7 @@ const slice = createAppSlice({
         builder
             .addCase(productActions.fetchProducts.fulfilled, (state, action) => {
                 action.payload.products.forEach((p) => {
-                    state.products.push({ ...p, status: 'idle' })
+                    state.products.push(p)
                 })
                 state.productsIsLoading = false
             })

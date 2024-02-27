@@ -19,8 +19,8 @@ function App() {
 
     return (
         <>
-            <TopBar />
             <Container maxWidth="xl" className={s.container}>
+                <TopBar />
                 <Routes>
                     <Route path="/" element={<Products />} />
                     <Route path="/product/:id" element={<Product />} />
