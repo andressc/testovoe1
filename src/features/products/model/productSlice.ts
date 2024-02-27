@@ -2,6 +2,8 @@ import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit'
 import { productsApi } from 'features/products/api/productsApi'
 import { ProductEntity } from 'features/products/types/productTypes'
 
+export type ProductsInitialState = ReturnType<typeof slice.getInitialState>
+
 const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })

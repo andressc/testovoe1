@@ -1,4 +1,4 @@
-import { cartReducer, cartActions } from './cartSlice'
+import { cartReducer, cartActions, CartInitialState, cartSelectors } from 'features/cart/model/cartSlice'
 import { CartFormData, CartItem } from 'features/cart/types/cartTypes'
 
 // Тесты для reducers
@@ -90,11 +90,36 @@ describe('cartReducer', () => {
 })
 
 // Тесты для selectors
-describe('appSelectors', () => {
-    it('should select error', () => {
-        const state = { app: { error: 'Test error message' } }
-        //const selectedError = cartSelectors.selectCartAmount(state)
-        //expect(selectedError).toBe('Test error message')
+describe('cartSelectors', () => {
+    let initialState: { cart: CartInitialState }
+
+    beforeEach(() => {
+        initialState = {
+            cart: {
+                cartItems: [
+                    {
+                        id: '1',
+                        name: 'name',
+                        description: 'description',
+                        fullDescription: 'fullDescription',
+                        cost: 500,
+                        image: 'image',
+                        quantity: 5,
+                    },
+                ],
+                cartAmount: 10,
+            },
+        }
+    })
+
+    it('should select cart amount', () => {
+        const selectCartAmount = cartSelectors.selectCartAmount(initialState)
+        expect(selectCartAmount).toBe(10)
+    })
+
+    it('should select cart items', () => {
+        const selectCartItems = cartSelectors.selectCartItems(initialState)
+        expect(selectCartItems).toEqual(initialState.cart.cartItems)
     })
 })
 

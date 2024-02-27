@@ -3,6 +3,8 @@ import { AppRootState } from 'app/model/store'
 import { ProductEntity } from 'features/products/types/productTypes'
 import { CartFormData, CartItem } from 'features/cart/types/cartTypes'
 
+export type CartInitialState = ReturnType<typeof slice.getInitialState>
+
 const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
