@@ -6,6 +6,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AppBar from '@mui/material/AppBar'
 import { useSelector } from 'react-redux'
 import { cartSelectors } from 'features/cart/model/cartSlice'
+import { Link } from 'react-router-dom'
 
 export const TopBar = () => {
     const cartAmount = useSelector(cartSelectors.selectCartAmount)
@@ -20,6 +21,8 @@ export const TopBar = () => {
                     startIcon={<ShoppingCartIcon />}
                     endIcon={cartAmount !== 0 ? `${cartAmount} ₽` : ''}
                     color="inherit"
+                    component={Link}
+                    to="/cart"
                 >
                     Корзина
                 </Button>

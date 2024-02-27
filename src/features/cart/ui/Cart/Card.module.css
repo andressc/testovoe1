@@ -1,0 +1,25 @@
+.card {
+    display: flex;
+    gap: 30px;
+}
+
+.item {
+    flex: 1 0 auto;
+    min-width: 200px;
+    margin: 5px;
+}
+
+.item.large {
+    flex: 2;
+}
+
+.item.small {
+    flex: 1;
+    height: 300px;
+}
+
+@media screen and (max-width: 767px) {
+    .card {
+        flex-direction: column;
+    }
+}

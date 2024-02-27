@@ -5,18 +5,18 @@ import Typography from '@mui/material/Typography'
 import { CardActionArea, CardActions } from '@mui/material'
 import { Product } from 'features/products/api/productsApi'
 import { useSkeletonProductCard } from 'features/products/ui/lib/useSkeletonProductCard'
+import { Link } from 'react-router-dom'
 
 type Props = {
     product: Product
-    addCartItemHandler: (product: Product) => void
     isLoading?: boolean
 }
-export const ProductCard = ({ product, addCartItemHandler, isLoading = false }: Props) => {
-    const { image, cost, name, description, button } = useSkeletonProductCard(product, addCartItemHandler, isLoading)
+export const ProductCard = ({ product, isLoading = false }: Props) => {
+    const { image, cost, name, description, button } = useSkeletonProductCard(product, isLoading)
 
     return (
         <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <CardActionArea>
+            <CardActionArea component={Link} to={`/product/${product.id}`}>
                 {image}
                 <CardContent>
                     <Typography gutterBottom variant="h4" component="div">

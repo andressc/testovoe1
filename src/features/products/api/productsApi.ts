@@ -1,4 +1,5 @@
-import { ref } from '../../../firebase/firebase'
+import { database } from '../../../firebase/firebase'
+import { ref, get } from 'firebase/database'
 
 export type Product = {
     id: string
@@ -8,16 +9,18 @@ export type Product = {
     image: string
 }
 
+const db = 'products'
+
 export const productsApi = {
     async getProducts(): Promise<{ data: Product[] }> {
-        //try {
-        const snapshot = await ref.once('value')
+        const dataRef = ref(database, db)
+        const snapshot = await get(dataRef)
+        return snapshot.val()
+    },
 
-        const data = snapshot.val()
-
-        return data
-        /*} catch (error) {
-            console.error('Ошибка при получении данных:', error)
-        }*/
+    async getProductById(productId: string): Promise<Product> {
+        const dataRef = ref(database, `${db}/data/${productId}`)
+        const snapshot = await get(dataRef)
+        return snapshot.val()
     },
 }

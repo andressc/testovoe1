@@ -3,13 +3,15 @@ import Skeleton from '@mui/material/Skeleton'
 import CardMedia from '@mui/material/CardMedia'
 import { Button } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import React from 'react'
+import { cartActions } from 'features/cart/model/cartSlice'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 
-export const useSkeletonProductCard = (
-    product: Product,
-    addCartItemHandler: (product: Product) => void,
-    isLoading: boolean
-) => {
+export const useSkeletonProductCard = (product: Product, isLoading: boolean, isImg: boolean = false) => {
+    const dispatch = useAppDispatch()
+    const addCartItemHandler = () => {
+        dispatch(cartActions.addCartItem({ product }))
+    }
+
     const cost = !isLoading ? `${product.cost} ₽` : <Skeleton width="50%" height={60} />
 
     const name = !isLoading ? product.name : <Skeleton />
@@ -25,7 +27,11 @@ export const useSkeletonProductCard = (
     )
 
     const image = !isLoading ? (
-        <CardMedia component="img" height="200" image={product.image} alt={product.name} />
+        !isImg ? (
+            <CardMedia component="img" height="200" image={product.image} alt={product.name} />
+        ) : (
+            <img src={product.image} alt={product.name} style={{ height: 200 }} />
+        )
     ) : (
         <Skeleton variant="rectangular" width={345} height={200} />
     )
@@ -37,7 +43,7 @@ export const useSkeletonProductCard = (
                 size="medium"
                 color="primary"
                 startIcon={<ShoppingCartIcon />}
-                onClick={() => addCartItemHandler(product)}
+                onClick={() => addCartItemHandler()}
             >
                 Купить
             </Button>

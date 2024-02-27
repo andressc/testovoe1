@@ -12,7 +12,10 @@ const slice = createAppSlice({
     name: 'products',
     initialState: {
         products: [] as ProductDomain[],
-        isLoading: true,
+        product: null as Product | null,
+        productsIsLoading: true,
+        productIsLoading: true,
+        skeletonSize: 8,
     },
     reducers: (creators) => {
         const createAThunk = creators.asyncThunk.withTypes<{ rejectValue: null }>()
@@ -35,19 +38,44 @@ const slice = createAppSlice({
                     }
                 }
             ),
+            getProductById: createAThunk<{ product: Product }, { id: string }>(
+                async (param, { dispatch, rejectWithValue }) => {
+                    try {
+                        const result = await productsApi.getProductById(param.id)
+                        return { product: result }
+
+                        //handleServerAppError(result.data.error, dispatch)
+                        //return rejectWithValue(null)
+                    } catch (e) {
+                        //handleServerNetworkError(dispatch, e)
+                        return rejectWithValue(null)
+                    }
+                }
+            ),
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(productActions.fetchProducts.fulfilled, (state, action) => {
-            action.payload.products.forEach((p) => {
-                state.products.push({ ...p, status: 'idle' })
+        builder
+            .addCase(productActions.fetchProducts.fulfilled, (state, action) => {
+                action.payload.products.forEach((p) => {
+                    state.products.push({ ...p, status: 'idle' })
+                })
+                state.productsIsLoading = false
             })
-            state.isLoading = false
-        })
+            .addCase(productActions.getProductById.fulfilled, (state, action) => {
+                state.product = action.payload.product
+                state.productIsLoading = false
+            })
+            .addCase(productActions.getProductById.pending, (state) => {
+                state.productIsLoading = true
+            })
     },
     selectors: {
         selectProducts: (sliceState) => sliceState.products,
-        selectIsLoading: (sliceState) => sliceState.isLoading,
+        selectProduct: (sliceState) => sliceState.product,
+        selectProductsIsLoading: (sliceState) => sliceState.productsIsLoading,
+        selectProductIsLoading: (sliceState) => sliceState.productIsLoading,
+        selectSkeletonSize: (sliceState) => sliceState.skeletonSize,
     },
 })
 

@@ -5,7 +5,7 @@ const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
-type CartItem = Product & { quantity: number }
+export type CartItem = Product & { quantity: number }
 
 const slice = createAppSlice({
     name: 'cart',
