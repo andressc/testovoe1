@@ -1,11 +1,19 @@
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Product } from 'features/products/api/productsApi'
+import { Product, productsApi } from 'features/products/api/productsApi'
+import { AppRootState } from 'app/store'
 
 const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
 
 export type CartItem = Product & { quantity: number }
+
+export type CartFormData = {
+    firstname: string
+    lastname: string
+    address: string
+    phone: string
+}
 
 const slice = createAppSlice({
     name: 'cart',
@@ -48,12 +56,27 @@ const slice = createAppSlice({
 
                 state.cartItems[index].quantity = state.cartItems[index].quantity - 1
             }),
+            purchase: createAThunk<undefined, { formData: CartFormData }>(
+                async (param, { dispatch, getState, rejectWithValue }) => {
+                    try {
+                        const state = getState() as AppRootState
+                        const cartItems = state.cart.cartItems.map((ci) => ({ id: ci.id, quantity: ci.quantity }))
+                        const data = { purchase: cartItems, info: param.formData }
+
+                        console.log(data)
+                    } catch (e) {
+                        //handleServerNetworkError(dispatch, e)
+                        return rejectWithValue(null)
+                    }
+                }
+            ),
         }
     },
     extraReducers: (builder) => {
-        /*builder.addCase(appActions.initializeApp.fulfilled, (state) => {
-            state.isInitialized = true
-        })*/
+        builder.addCase(cartActions.purchase.fulfilled, (state) => {
+            state.cartItems = []
+            state.cartAmount = 0
+        })
     },
     selectors: {
         selectCartAmount: (sliceState) => sliceState.cartAmount,

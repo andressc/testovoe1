@@ -1,6 +1,6 @@
 .card {
     display: flex;
-    gap: 30px;
+    gap: 50px;
 }
 
 .item {
@@ -15,7 +15,6 @@
 
 .item.small {
     flex: 1;
-    height: 300px;
 }
 
 @media screen and (max-width: 767px) {
