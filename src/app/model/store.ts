@@ -15,7 +15,12 @@ export const reducers = {
 }
 
 const preloadedState = {
-    cart: loadState().cart,
+    cart: loadState()?.cart
+        ? loadState().cart
+        : {
+              cartItems: [],
+              cartAmount: 0,
+          },
 }
 
 export const store = configureStore({
