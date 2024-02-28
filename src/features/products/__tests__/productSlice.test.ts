@@ -58,7 +58,7 @@ describe('productsSelectors', () => {
 
     it('should select products', () => {
         const selectProducts = productSelectors.selectProducts(initialState)
-        expect(selectProducts).toEqual(initialState.products)
+        expect(selectProducts).toEqual(initialState.products.products)
     })
 
     it('should select product', () => {
