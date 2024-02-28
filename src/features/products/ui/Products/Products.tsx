@@ -9,7 +9,7 @@ export const Products = () => {
     let productsIsLoading = useSelector(productSelectors.selectProductsIsLoading)
     const skeletonSize = useSelector(productSelectors.selectSkeletonSize)
 
-    if (products.length === 0) {
+    if (productsIsLoading) {
         products = Array(skeletonSize).fill(0)
     }
 

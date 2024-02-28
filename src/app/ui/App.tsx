@@ -11,6 +11,7 @@ import Product from 'features/products/ui/Product/Product'
 import { NotFound } from 'common/components/NotFound/NotFound'
 import { InformationPage } from 'common/components/InformationPage/InformationPage'
 import purchaseSuccessfulImage from '../../common/assets/images/purchaseSuccessful.webp'
+import { ErrorSnackBar } from 'common/components/ErrorSnackBar/ErrorSnackBar'
 
 function App() {
     const dispatch = useAppDispatch()
@@ -22,6 +23,7 @@ function App() {
     return (
         <>
             <Container maxWidth="xl" className={s.container}>
+                <ErrorSnackBar />
                 <TopBar />
                 <Routes>
                     <Route path="/" element={<Products />} />

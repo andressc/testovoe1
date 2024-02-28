@@ -1,5 +1,9 @@
 import { asyncThunkCreator, buildCreateSlice, PayloadAction } from '@reduxjs/toolkit'
 
+type MyErrorAction = {
+    error: Error
+} & PayloadAction<string>
+
 const createAppSlice = buildCreateSlice({
     creators: { asyncThunk: asyncThunkCreator },
 })
@@ -15,6 +19,14 @@ const slice = createAppSlice({
                 state.error = action.payload.error
             }),
         }
+    },
+    extraReducers: (builder) => {
+        builder.addMatcher(
+            (action): action is MyErrorAction => action.type.endsWith('rejected'),
+            (state, action) => {
+                state.error = action.error.message
+            }
+        )
     },
     selectors: {
         selectError: (sliceState) => sliceState.error,

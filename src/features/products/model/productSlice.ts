@@ -1,4 +1,4 @@
-import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit'
+import { asyncThunkCreator, buildCreateSlice, isAnyOf } from '@reduxjs/toolkit'
 import { productsApi } from 'features/products/api/productsApi'
 import { ProductEntity } from 'features/products/types/productTypes'
 
@@ -25,31 +25,16 @@ const slice = createAppSlice({
                 state.products = []
             }),
             fetchProducts: createAThunk<{ products: ProductEntity[] }, undefined>(async (_, { rejectWithValue }) => {
-                try {
-                    const result = await productsApi.getProducts()
+                const result = await productsApi.getProducts()
+                if (result.data.length !== 0) {
                     return { products: result.data }
-
-                    //handleServerAppError(result.data.error, dispatch)
-                    //return rejectWithValue(null)
-                } catch (e) {
-                    //handleServerNetworkError(dispatch, e)
-                    return rejectWithValue(null)
                 }
+                return rejectWithValue(null)
             }),
-            getProductById: createAThunk<{ product: ProductEntity }, { id: string }>(
-                async (param, { rejectWithValue }) => {
-                    try {
-                        const result = await productsApi.getProductById(param.id)
-                        return { product: result }
-
-                        //handleServerAppError(result.data.error, dispatch)
-                        //return rejectWithValue(null)
-                    } catch (e) {
-                        //handleServerNetworkError(dispatch, e)
-                        return rejectWithValue(null)
-                    }
-                }
-            ),
+            getProductById: createAThunk<{ product: ProductEntity }, { id: string }>(async (param) => {
+                const result = await productsApi.getProductById(param.id)
+                return { product: result }
+            }),
         }
     },
     extraReducers: (builder) => {
@@ -58,15 +43,25 @@ const slice = createAppSlice({
                 action.payload.products.forEach((p) => {
                     state.products.push(p)
                 })
-                state.productsIsLoading = false
             })
             .addCase(productActions.getProductById.fulfilled, (state, action) => {
                 state.product = action.payload.product
-                state.productIsLoading = false
             })
             .addCase(productActions.getProductById.pending, (state) => {
                 state.productIsLoading = true
             })
+            .addMatcher(
+                isAnyOf(
+                    productActions.getProductById.fulfilled,
+                    productActions.getProductById.rejected,
+                    productActions.fetchProducts.fulfilled,
+                    productActions.fetchProducts.rejected
+                ),
+                (state) => {
+                    state.productIsLoading = false
+                    state.productsIsLoading = false
+                }
+            )
     },
     selectors: {
         selectProducts: (sliceState) => sliceState.products,
