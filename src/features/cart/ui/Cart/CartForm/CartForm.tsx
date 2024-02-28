@@ -10,6 +10,7 @@ import { cartActions } from 'features/cart/model/cartSlice'
 import Box from '@mui/material/Box'
 import * as Yup from 'yup'
 import { minMaxRequiredStringField, PhoneNumberField } from 'common/utils/validations'
+import { useNavigate } from 'react-router-dom'
 
 const CartFormSchema = Yup.object().shape({
     firstName: minMaxRequiredStringField(2, 20),
@@ -19,6 +20,7 @@ const CartFormSchema = Yup.object().shape({
 })
 
 export const CartForm = () => {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const formik = useFormik({
         validationSchema: CartFormSchema,
@@ -30,6 +32,7 @@ export const CartForm = () => {
         },
         onSubmit: (values) => {
             dispatch(cartActions.purchase({ formData: values }))
+            navigate('/purchase-successful')
         },
     })
 

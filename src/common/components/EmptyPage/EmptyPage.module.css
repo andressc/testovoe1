@@ -1,19 +1,21 @@
-.notFoundContainer {
+.emptyPageContainer {
     display: flex;
-    gap: 30px;
+    gap: 50px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.notFoundContainer img {
-    width: 200px;
+.emptyPageContainer img {
+    width: 400px;
 }
 
-.notFoundTextContainer {
+.emptyPageTextContainer {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    gap: 30px;
 }

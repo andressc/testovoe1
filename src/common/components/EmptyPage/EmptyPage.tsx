@@ -1,6 +1,9 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
-import s from 'common/components/EmptyPage/EmptyPage.module.css'
+import s from './EmptyPage.module.css'
+import Card from '@mui/material/Card'
+import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
 
 type Props = {
     title: string
@@ -10,12 +13,15 @@ type Props = {
 
 export const EmptyPage = ({ title, description, image }: Props) => {
     return (
-        <div className={s.notFoundContainer}>
-            <div className={s.notFoundTextContainer}>
+        <Card className={s.emptyPageContainer} sx={{ p: 10 }}>
+            <div className={s.emptyPageTextContainer}>
                 <Typography variant="h1">{title}</Typography>
                 <Typography variant="h4">{description}</Typography>
+                <Button size="large" variant={'contained'} component={Link} to={'/'}>
+                    Продолжить покупки
+                </Button>
             </div>
             <img src={image} alt="" />
-        </div>
+        </Card>
     )
 }
