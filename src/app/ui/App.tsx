@@ -9,7 +9,7 @@ import { productActions } from 'features/products/model/productSlice'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import Product from 'features/products/ui/Product/Product'
 import { NotFound } from 'common/components/NotFound/NotFound'
-import { EmptyPage } from 'common/components/EmptyPage/EmptyPage'
+import { InformationPage } from 'common/components/InformationPage/InformationPage'
 import purchaseSuccessfulImage from '../../common/assets/images/purchaseSuccessful.webp'
 
 function App() {
@@ -30,8 +30,8 @@ function App() {
                     <Route
                         path="/purchase-successful"
                         element={
-                            <EmptyPage
-                                title="Заказ создан"
+                            <InformationPage
+                                title="заказ создан"
                                 description="Мы свяжемся с Вами в ближайшее время"
                                 image={purchaseSuccessfulImage}
                             />

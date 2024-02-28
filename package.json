@@ -66,6 +66,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "prop-types": "^15.8.1",
     "storybook": "^7.6.17",
+    "storybook-addon-react-router-v6": "^2.0.10",
     "webpack": "^5.90.3"
   }
 }

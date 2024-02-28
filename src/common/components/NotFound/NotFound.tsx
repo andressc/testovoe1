@@ -1,7 +1,7 @@
 import React from 'react'
 import notFoundImage from 'common/assets/images/notFound.webp'
-import { EmptyPage } from 'common/components/EmptyPage/EmptyPage'
+import { InformationPage } from 'common/components/InformationPage/InformationPage'
 
 export const NotFound = () => {
-    return <EmptyPage title="не найдено" description="Данной страницы нет у нас на сайте" image={notFoundImage} />
+    return <InformationPage title="не найдено" description="Данной страницы нет у нас на сайте" image={notFoundImage} />
 }

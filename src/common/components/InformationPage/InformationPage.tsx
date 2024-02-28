@@ -1,6 +1,6 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
-import s from './EmptyPage.module.css'
+import s from 'common/components/InformationPage/InformationPage.module.css'
 import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
@@ -11,7 +11,7 @@ type Props = {
     image: string
 }
 
-export const EmptyPage = ({ title, description, image }: Props) => {
+export const InformationPage = ({ title, description, image }: Props) => {
     return (
         <Card className={s.emptyPageContainer} sx={{ p: 10 }}>
             <div className={s.emptyPageTextContainer}>
