@@ -10,9 +10,10 @@ import Typography from '@mui/material/Typography'
 import CardActions from '@mui/material/CardActions'
 import Card from '@mui/material/Card'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 import { cartActions } from 'features/cart/model/cartSlice'
 import CircularProgress from '@mui/material/CircularProgress'
+import { ProductFullDescription } from 'features/products/ui/Product/ProductFullDescription/ProductFullDescription'
 
 const Product = () => {
     const dispatch = useAppDispatch()
@@ -52,10 +53,8 @@ const Product = () => {
                     <Typography variant="subtitle1" color="text.secondary">
                         {product.description}
                     </Typography>
-                    <Typography variant="subtitle2" color="text.secondary">
-                        {product.fullDescription}
-                    </Typography>
                 </CardContent>
+                <ProductFullDescription productFullDescription={product.fullDescription} />
                 <CardActions
                     sx={{
                         alignSelf: 'stretch',

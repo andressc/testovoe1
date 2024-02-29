@@ -32,6 +32,7 @@ export const CartForm = () => {
         },
         onSubmit: (values) => {
             dispatch(cartActions.purchase({ formData: values }))
+
             navigate('/purchase-successful')
         },
     })
