@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Typography from '@mui/material/Typography'
 import s from 'common/components/InformationPage/InformationPage.module.css'
 import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
 import { Preloader } from 'common/components/Preloader/Preloader'
+import { useImageLoaded } from 'common/hooks/useImageLoaded'
 
 type Props = {
     title: string
@@ -13,15 +14,7 @@ type Props = {
 }
 
 export const InformationPage = ({ title, description, image }: Props) => {
-    const [imageLoaded, setImageLoaded] = useState(false)
-
-    useEffect(() => {
-        const img = new Image()
-        img.onload = () => {
-            setImageLoaded(true)
-        }
-        img.src = image
-    }, [image])
+    const { imageLoaded } = useImageLoaded(image)
 
     if (!imageLoaded) {
         return <Preloader />

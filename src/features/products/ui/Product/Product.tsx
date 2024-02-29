@@ -15,12 +15,15 @@ import { cartActions } from 'features/cart/model/cartSlice'
 import { ProductFullDescription } from 'features/products/ui/Product/ProductFullDescription/ProductFullDescription'
 import { Preloader } from 'common/components/Preloader/Preloader'
 import { CurrencyText } from 'common/components/CurrencyText/CurrencyText'
+import { useImageLoaded } from 'common/hooks/useImageLoaded'
 
 export const Product = () => {
     const dispatch = useAppDispatch()
 
     const product = useSelector(productSelectors.selectProduct)
     const productIsLoading = useSelector(productSelectors.selectProductIsLoading)
+
+    const { imageLoaded } = useImageLoaded(product?.image)
 
     const { id } = useParams<{ id: string }>()
 
@@ -40,7 +43,7 @@ export const Product = () => {
         return <NotFound />
     }
 
-    return product && !productIsLoading ? (
+    return product && !productIsLoading && imageLoaded ? (
         <Card sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '50px' }}>
             <img src={product.image} alt={product.name} style={{ height: 350, margin: 50 }} />
             <Box style={{ maxWidth: 700 }}>
