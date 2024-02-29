@@ -10,9 +10,16 @@ export const productsApi = {
         return snapshot.val()
     },
 
-    async getProductById(productId: string): Promise<ProductEntity> {
-        const dataRef = ref(database, `${db}/data/${productId}`)
+    async getProductById(productId: string): Promise<ProductEntity | null> {
+        const dataRef = ref(database, db)
         const snapshot = await get(dataRef)
-        return snapshot.val()
+
+        const data = snapshot.val().data.find((pe: ProductEntity) => pe.id === productId)
+
+        if (data) {
+            return data
+        }
+
+        return null
     },
 }
