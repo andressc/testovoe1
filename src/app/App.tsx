@@ -22,9 +22,9 @@ function App() {
 
     return (
         <>
-            <Container maxWidth="xl" className={s.container}>
-                <ErrorSnackBar />
-                <TopBar />
+            <ErrorSnackBar />
+            <TopBar />
+            <Container maxWidth="xl" className={s.container} component="section">
                 <Routes>
                     <Route path="/" element={<Products />} />
                     <Route path="/product/:id" element={<Product />} />

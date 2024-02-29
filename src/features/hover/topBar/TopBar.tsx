@@ -13,7 +13,7 @@ export const TopBar = () => {
     const cartAmount = useSelector(cartSelectors.selectCartAmount)
 
     return (
-        <AppBar position="fixed">
+        <AppBar position="fixed" component="nav">
             <Toolbar sx={{ position: 'relative' }}>
                 <LinkTypography to="/"> Apple Shop</LinkTypography>
                 <Button
