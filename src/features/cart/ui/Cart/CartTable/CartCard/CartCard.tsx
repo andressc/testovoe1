@@ -37,13 +37,15 @@ export const CartCard = ({ cartItem, addCartItemHandler, removeCartItemHandler }
                 <CurrencyText>{cost}</CurrencyText>
             </TableCell>
             <FixedTableCell>
-                <IconButton aria-label="delete" size="small" onClick={() => removeCartItemHandler(cartItem)}>
-                    <RemoveCircleIcon fontSize="small" />
-                </IconButton>
-                {quantity}
-                <IconButton aria-label="delete" size="medium" onClick={() => addCartItemHandler(cartItem)}>
-                    <AddCircleIcon fontSize="small" />
-                </IconButton>
+                <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                    <IconButton aria-label="delete" size="medium" onClick={() => removeCartItemHandler(cartItem)}>
+                        <RemoveCircleIcon fontSize="small" />
+                    </IconButton>
+                    {quantity}
+                    <IconButton aria-label="add" size="medium" onClick={() => addCartItemHandler(cartItem)}>
+                        <AddCircleIcon fontSize="small" />
+                    </IconButton>
+                </div>
             </FixedTableCell>
         </TableRow>
     )
