@@ -31,7 +31,7 @@ export const InformationPage = ({ title, description, image }: Props) => {
                     Продолжить покупки
                 </Button>
             </div>
-            {imageLoaded ? <img src={image} alt="" /> : <div className={s.preloadedImage}></div>}
+            {imageLoaded ? <img src={image} alt="" /> : <div className={s.preloadedImage}>кввуввв</div>}
         </Card>
     )
 }
