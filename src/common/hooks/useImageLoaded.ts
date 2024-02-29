@@ -6,7 +6,7 @@ export const useImageLoaded = (image: string | undefined) => {
     const [imageLoaded, setImageLoaded] = useState(false)
 
     useEffect(() => {
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             if (!imageLoaded) {
                 setImageLoaded(true)
             }
@@ -19,6 +19,10 @@ export const useImageLoaded = (image: string | undefined) => {
 
         if (image) {
             img.src = image
+        }
+
+        return () => {
+            clearTimeout(timeoutId)
         }
     }, [image, imageLoaded])
 
