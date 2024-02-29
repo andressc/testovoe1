@@ -19,3 +19,8 @@
     text-align: center;
     gap: 30px;
 }
+
+.preloadedImage {
+    width: 400px;
+    height: 400px;
+}

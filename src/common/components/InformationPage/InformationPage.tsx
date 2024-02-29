@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import s from 'common/components/InformationPage/InformationPage.module.css'
 import Card from '@mui/material/Card'
@@ -12,6 +12,16 @@ type Props = {
 }
 
 export const InformationPage = ({ title, description, image }: Props) => {
+    const [imageLoaded, setImageLoaded] = useState(false)
+
+    useEffect(() => {
+        const img = new Image()
+        img.onload = () => {
+            setImageLoaded(true)
+        }
+        img.src = image
+    }, [image])
+
     return (
         <Card className={s.emptyPageContainer} sx={{ p: 10 }}>
             <div className={s.emptyPageTextContainer}>
@@ -21,7 +31,7 @@ export const InformationPage = ({ title, description, image }: Props) => {
                     Продолжить покупки
                 </Button>
             </div>
-            <img src={image} alt="" />
+            {imageLoaded ? <img src={image} alt="" /> : <div className={s.preloadedImage}></div>}
         </Card>
     )
 }
