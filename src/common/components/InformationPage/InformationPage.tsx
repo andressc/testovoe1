@@ -4,6 +4,7 @@ import s from 'common/components/InformationPage/InformationPage.module.css'
 import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+import { Preloader } from 'common/components/Preloader/Preloader'
 
 type Props = {
     title: string
@@ -22,6 +23,10 @@ export const InformationPage = ({ title, description, image }: Props) => {
         img.src = image
     }, [image])
 
+    if (!imageLoaded) {
+        return <Preloader />
+    }
+
     return (
         <Card className={s.emptyPageContainer} sx={{ p: 10 }}>
             <div className={s.emptyPageTextContainer}>
@@ -31,7 +36,7 @@ export const InformationPage = ({ title, description, image }: Props) => {
                     Продолжить покупки
                 </Button>
             </div>
-            {imageLoaded ? <img src={image} alt="" /> : <div className={s.preloadedImage}></div>}
+            <img src={image} alt={title} />
         </Card>
     )
 }

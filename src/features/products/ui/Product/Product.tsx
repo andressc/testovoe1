@@ -12,10 +12,10 @@ import Card from '@mui/material/Card'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import { cartActions } from 'features/cart/model/cartSlice'
-import CircularProgress from '@mui/material/CircularProgress'
 import { ProductFullDescription } from 'features/products/ui/Product/ProductFullDescription/ProductFullDescription'
+import { Preloader } from 'common/components/Preloader/Preloader'
 
-const Product = () => {
+export const Product = () => {
     const dispatch = useAppDispatch()
 
     const product = useSelector(productSelectors.selectProduct)
@@ -77,10 +77,6 @@ const Product = () => {
             </Box>
         </Card>
     ) : (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <CircularProgress />
-        </Box>
+        <Preloader />
     )
 }
-
-export default Product

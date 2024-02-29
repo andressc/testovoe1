@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { TopBar } from 'features/topBar/TopBar'
+import { TopBar } from 'features/hover/topBar/TopBar'
 
 const meta: Meta<typeof TopBar> = {
-    title: 'TopBar/TopBar',
+    title: 'Hover/TopBar',
     component: TopBar,
     parameters: {
         layout: 'centered',

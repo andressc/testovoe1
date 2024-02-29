@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { TopBar } from 'features/topBar/TopBar'
+import { TopBar } from 'features/hover/topBar/TopBar'
 import { Cart } from 'features/cart/ui/Cart/Cart'
 
 const meta: Meta<typeof Cart> = {
