@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { cartActions } from 'features/cart/model/cartSlice'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { ProductEntity } from 'features/products/types/productTypes'
+import { CurrencyText } from 'common/components/CurrencyText/CurrencyText'
 
 export const useSkeletonProductCard = (product: ProductEntity, isLoading: boolean) => {
     const dispatch = useAppDispatch()
@@ -12,7 +13,7 @@ export const useSkeletonProductCard = (product: ProductEntity, isLoading: boolea
         dispatch(cartActions.addCartItem({ product }))
     }
 
-    const cost = !isLoading ? `${product.cost} ₽` : <Skeleton width="50%" height={60} />
+    const cost = !isLoading ? <CurrencyText>{product.cost}</CurrencyText> : <Skeleton width="50%" height={60} />
 
     const name = !isLoading ? product.name : <Skeleton />
 

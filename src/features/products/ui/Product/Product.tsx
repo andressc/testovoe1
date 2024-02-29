@@ -14,6 +14,7 @@ import Button from '@mui/material/Button'
 import { cartActions } from 'features/cart/model/cartSlice'
 import { ProductFullDescription } from 'features/products/ui/Product/ProductFullDescription/ProductFullDescription'
 import { Preloader } from 'common/components/Preloader/Preloader'
+import { CurrencyText } from 'common/components/CurrencyText/CurrencyText'
 
 export const Product = () => {
     const dispatch = useAppDispatch()
@@ -45,7 +46,7 @@ export const Product = () => {
             <Box style={{ maxWidth: 700 }}>
                 <CardContent>
                     <Typography gutterBottom variant="h4" component="div">
-                        {product.cost} ₽
+                        <CurrencyText>{product.cost}</CurrencyText>
                     </Typography>
                     <Typography gutterBottom variant="h5" component="div">
                         {product.name}

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { cartSelectors } from 'features/cart/model/cartSlice'
 import { Link } from 'react-router-dom'
 import { LinkTypography } from 'common/components/LinkTypography/LinkTypography'
+import { CurrencyText } from 'common/components/CurrencyText/CurrencyText'
 
 export const TopBar = () => {
     const cartAmount = useSelector(cartSelectors.selectCartAmount)
@@ -17,7 +18,7 @@ export const TopBar = () => {
                 <LinkTypography to="/"> Apple Shop</LinkTypography>
                 <Button
                     startIcon={<ShoppingCartIcon />}
-                    endIcon={cartAmount !== 0 ? `${cartAmount} ₽` : ''}
+                    endIcon={cartAmount !== 0 ? <CurrencyText>{cartAmount}</CurrencyText> : ''}
                     color="inherit"
                     component={Link}
                     to="/cart"

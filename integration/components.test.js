@@ -44,4 +44,17 @@ describe('components', () => {
 
         expect(image).toMatchImageSnapshot()
     })
+
+    it('currencyText base example, visually looks correct', async () => {
+        await page.goto(
+            'http://localhost:6006/iframe.html?id=components-currencytext--standard-currency-text&viewMode=story',
+            {
+                waitUntil: 'networkidle2',
+            }
+        )
+
+        const image = await page.screenshot()
+
+        expect(image).toMatchImageSnapshot()
+    })
 })

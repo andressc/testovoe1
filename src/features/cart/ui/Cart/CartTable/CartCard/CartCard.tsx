@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import { FixedTableCell } from 'common/components/FixedTableCell/FixedTableCell'
 import { ProductEntity } from 'features/products/types/productTypes'
 import { CartItem } from 'features/cart/types/cartTypes'
+import { CurrencyText } from 'common/components/CurrencyText/CurrencyText'
 
 type Props = {
     cartItem: CartItem
@@ -33,7 +34,7 @@ export const CartCard = ({ cartItem, addCartItemHandler, removeCartItemHandler }
             <TableCell>
                 {name}
                 <br />
-                {cost} ₽
+                <CurrencyText>{cost}</CurrencyText>
             </TableCell>
             <FixedTableCell>
                 <IconButton aria-label="delete" size="small" onClick={() => removeCartItemHandler(cartItem)}>
